@@ -1,0 +1,25 @@
+.text-gradient {
+  color: #4defa7;
+  background-image: -webkit-linear-gradient(139deg, #2d71fa 0%, #4defa7 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
+  padding: 0;
+}
+
+/* Button scroll top */
+.scrollTop {
+  font-size: 2rem;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  border: none;
+  background: rgb(255, 255, 255);
+  color: var(--bs-primary);
+  border-radius: 0.5rem;
+}
+
+.hidden {
+  visibility: hidden;
+}
