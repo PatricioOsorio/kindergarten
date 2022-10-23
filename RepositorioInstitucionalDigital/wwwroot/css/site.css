@@ -1,3 +1,7 @@
+body {
+  font-family: 'SF Pro Display', sans-serif !important;
+}
+
 .text-gradient {
   color: #4defa7;
   background-image: -webkit-linear-gradient(139deg, #2d71fa 0%, #4defa7 100%);
