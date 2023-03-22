@@ -1,4 +1,4 @@
-namespace RepositorioInstitucionalDigital.Models
+namespace kindergarten.Models
 {
   public class ErrorViewModel
   {

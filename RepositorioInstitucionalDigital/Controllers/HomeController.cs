@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using RepositorioInstitucionalDigital.Models;
+using kindergarten.Models;
 using System.Diagnostics;
 
-namespace RepositorioInstitucionalDigital.Controllers
+namespace kindergarten.Controllers
 {
+  [AllowAnonymous]
   public class HomeController : Controller
   {
     private readonly ILogger<HomeController> _logger;
@@ -19,27 +20,26 @@ namespace RepositorioInstitucionalDigital.Controllers
       _roleManager = roleManager;
     }
 
-    [AllowAnonymous]
-    public async Task<IActionResult> Index()
+    //[Authorize(Roles = "SYSADMIN")]
+    public IActionResult IndexAsync()
     {
-      var user = await _userManager.FindByEmailAsync("patriciomiguel_12@hotmail.com");
+      //var user = await _userManager.FindByEmailAsync("PatricioMiguel_12@hotmail.com");
 
-      if (user == null)
-      {
-        await _roleManager.CreateAsync(new IdentityRole("ADMIN"));
-        await _roleManager.CreateAsync(new IdentityRole("SYSADMIN"));
+      //if (user == null)
+      //{
+      //  await _roleManager.CreateAsync(new IdentityRole("ADMIN"));
+      //  await _roleManager.CreateAsync(new IdentityRole("SUPERADMIN"));
 
-        var newUser = new IdentityUser()
-        {
-          UserName = "Patricio",
-          Email = "patriciomiguel_12@hotmail.com",
-          EmailConfirmed = true
-        };
+      //  var newUser = new IdentityUser()
+      //  {
+      //    UserName = "Patricio",
+      //    Email = "PatricioMiguel_12@hotmail.com",
+      //    EmailConfirmed = true
+      //  };
 
-        await _userManager.CreateAsync(newUser, "Pato123.");
-        await _userManager.AddToRoleAsync(newUser, "SYSADMIN");
-
-      }
+      //  await _userManager.CreateAsync(newUser, "Pato12345.");
+      //  await _userManager.AddToRoleAsync(newUser, "SUPERADMIN");
+      //}
       return View();
     }
 

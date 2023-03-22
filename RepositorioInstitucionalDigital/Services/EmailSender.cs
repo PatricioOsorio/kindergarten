@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 using SendGrid.Helpers.Mail;
 using SendGrid;
 
-namespace RepositorioInstitucionalDigital.Services
+namespace kindergarten.Services
 {
   public class EmailSender : IEmailSender
   {

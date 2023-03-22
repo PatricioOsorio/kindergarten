@@ -1,10 +1,10 @@
 body {
-  font-family: 'SF Pro Display', sans-serif !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
 }
 
 .text-gradient {
   color: #4defa7;
-  background-image: -webkit-linear-gradient(139deg, #2d71fa 0%, #4defa7 100%);
+  background-image: -webkit-linear-gradient(130deg, #FFE4E1 0%, var(--bs-primary) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   text-fill-color: transparent;

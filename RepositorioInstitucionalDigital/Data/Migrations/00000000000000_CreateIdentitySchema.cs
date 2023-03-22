@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace RepositorioInstitucionalDigital.Data.Migrations
+namespace kindergarten.Data.Migrations
 {
   public partial class CreateIdentitySchema : Migration
   {

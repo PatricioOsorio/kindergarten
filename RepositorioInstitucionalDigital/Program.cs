@@ -1,8 +1,9 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
-using RepositorioInstitucionalDigital.Data;
-using RepositorioInstitucionalDigital.Services;
+using kindergarten.Data;
+using kindergarten.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,11 +13,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders()
-    .AddRoles<IdentityRole>();
-    //.AddDefaultUI();
+    .AddDefaultUI();
+
 
 builder.Services.AddControllersWithViews();
 
@@ -25,6 +27,28 @@ builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
 var app = builder.Build();
+
+// ==========================================
+using (var scope = app.Services.CreateScope())
+{
+  var services = scope.ServiceProvider;
+  var loggerFactory = services.GetRequiredService<ILoggerFactory>();
+  try
+  {
+    var context = services.GetRequiredService<ApplicationDbContext>();
+    var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+    await ContextSeed.SeedRolesAsync(userManager, roleManager);
+    await ContextSeed.SeedSuperAdminAsync(userManager, roleManager);
+
+  }
+  catch (Exception ex)
+  {
+    var logger = loggerFactory.CreateLogger<Program>();
+    logger.LogError(ex, "An error occurred seeding the DB.");
+  }
+}
+// ==========================================
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

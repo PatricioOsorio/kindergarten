@@ -1,4 +1,4 @@
-﻿namespace RepositorioInstitucionalDigital.Services
+﻿namespace kindergarten.Services
 {
   public class AuthMessageSenderOptions
   {

@@ -1,0 +1,48 @@
+﻿@using kindergaten.Models;
+@using Microsoft.AspNetCore.Identity
+@model IEnumerable<IdentityUser>
+
+@{
+  ViewData["Title"] = "Usuarios";
+}
+
+<a class="btn btn-primary mb-3" asp-action="CreateUser" asp-controller="Home">Crear usuario</a>
+ 
+<div class="card w-100">
+  <h1 class="card-header">Lista de usuarios</h1>
+  <div class="card-body">
+    <div class="table-responsive">
+      @if (Model.Any())
+      {
+        <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th>@Html.DisplayNameFor(m=>m.UserName)</th>
+              <th>@Html.DisplayNameFor(m=>m.PhoneNumber)</th>
+              <th>@Html.DisplayNameFor(m=>m.Email)</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach (var user in Model)
+            {
+              <tr>
+                <td>@Html.DisplayFor(m => user.UserName)</td>
+                <td>@Html.DisplayFor(m => user.PhoneNumber)</td>
+                <td>@Html.DisplayFor(m => user.Email)</td>
+                <td class="d-flex justify-content-center ">
+                  <a class="btn btn-outline-warning mx-1" asp-action="UpdateUser" asp-route-id="@user.Id">Editar</a>
+                  <a class="btn btn-outline-danger mx-1" asp-action="DeleteUser" asp-route-id="@user.Id">Eliminar</a>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      }
+      else
+      {
+        <p>No existen registros</p>
+      }
+    </div>
+  </div>
+</div>

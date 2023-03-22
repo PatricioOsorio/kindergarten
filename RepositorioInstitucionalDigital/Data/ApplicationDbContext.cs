@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿//using kindergaten.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace RepositorioInstitucionalDigital.Data
+namespace kindergarten.Data
 {
   public class ApplicationDbContext : IdentityDbContext
   {
@@ -9,5 +11,8 @@ namespace RepositorioInstitucionalDigital.Data
         : base(options)
     {
     }
+
+    // Usar modelos
+    public DbSet<IdentityUser> User { get; set; }
   }
 }

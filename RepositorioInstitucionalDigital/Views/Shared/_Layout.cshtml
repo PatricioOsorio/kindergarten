@@ -7,13 +7,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>@ViewData["Title"] - RepositorioInstitucionalDigital</title>
+  <title>@ViewData["Title"] - Kindergarten</title>
   <!-- Boostrap css -->
   <link rel="stylesheet" href="~/css/bootstrap.min.personalized.css" asp-append-version="true" />
 
-    <!-- Fonts cdn-->
-  <link href="http://fonts.cdnfonts.com/css/sf-pro-display"
-        rel="stylesheet" />
+  <!-- Fonts cdn-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- My styles -->
   <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -29,6 +30,8 @@
   <!-- Aos (animation library) -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
+  <!-- Page icon -->
+  <link rel="icon" href="~/images/icon.png" />
 </head>
 <body class="d-flex flex-column vh-100">
 
@@ -38,8 +41,8 @@
       <nav class="navbar navbar-expand-lg navbar-dark bg-primary text-white shadow">
         <div class="container">
           <a class="navbar-brand text-white" asp-controller="Home" asp-action="Index">
-            <img src="~/images/icons/logo.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
-            ProjectCore
+            <img src="~/images/icon.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
+            Kindergarten
           </a>
 
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,7 +55,16 @@
                 <a class="nav-link text-white" asp-controller="Home" asp-action="Index"><i class="fas fa-home mx-2"></i>Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" asp-controller="Home" asp-action="Privacy"><i class="fas fa-user-shield mx-2"></i>Privacy</a>
+                <a class="nav-link text-white" asp-controller="Home" asp-action="Index" asp-fragment="work"><i class="fa-solid fa-briefcase me-2"></i>Forma de trabajo</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" asp-controller="Home" asp-action="Index" asp-fragment="contact"><i class="fas fa-id-card-alt mx-2"></i>Contacto</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" asp-controller="Home" asp-action="Index" asp-fragment="mailbox"><i class="fas fa-inbox mx-2"></i>Buzón</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" asp-controller="Home" asp-action="Privacy"><i class="fas fa-user-shield mx-2"></i>Privacidad</a>
               </li>
             </ul>
             <ul class="navbar-nav ms-auto">
@@ -73,10 +85,10 @@
         @RenderBody()
       </div>
     </main>
-    <footer class="d-block mt-auto py-3 bg-secondary">
+    <footer class="d-block mt-auto py-5 bg-secondary">
       <div class="container">
-        <span class="text-bg-dark">
-          &copy; 2022 - RepositorioInstitucionalDigital - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <span class="text-white">
+          &copy; 2023 - Kindergarten - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacidad</a>
         </span>
       </div>
     </footer>
@@ -98,34 +110,34 @@
       <div class="l-navbar" id="nav-bar">
         <nav class="nav">
           <div>
-            <a  class="nav_logo" asp-controller="Home" asp-action="Index">
+            <a class="nav_logo" asp-controller="Home" asp-action="Index">
               <i class="bx bx-layer nav_logo-icon"></i>
               <span class="nav_logo-name">OpenUtp</span>
             </a>
             <div class="nav_list">
-              <a  class="nav_link active" asp-controller="Home" asp-action="Index">
-                <i class='bx bx-home-alt-2 nav_icon' ></i>
+              <a class="nav_link active" asp-controller="Home" asp-action="Index">
+                <i class='bx bx-home-alt-2 nav_icon'></i>
                 <span class="nav_name">Inicio</span>
               </a>
-              <a href="#" class="nav_link">
+              <a class="nav_link" asp-controller="Superadmin" asp-action="Index">
                 <i class="bx bx-user nav_icon"></i>
-                <span class="nav_name">Users</span>
-              </a>
-              <a href="#" class="nav_link">
-                <i class="bx bx-message-square-detail nav_icon"></i>
-                <span class="nav_name">Messages</span>
-              </a>
-              <a href="#" class="nav_link">
-                <i class="bx bx-bookmark nav_icon"></i>
-                <span class="nav_name">Bookmark</span>
+                <span class="nav_name">Usuarios</span>
               </a>
               <a href="#" class="nav_link">
                 <i class="bx bx-folder nav_icon"></i>
-                <span class="nav_name">Files</span>
+                <span class="nav_name">Publicaciones</span>
+              </a>
+              <a href="#" class="nav_link">
+                <i class="bx bx-user nav_icon"></i>
+                <span class="nav_name">Roles</span>
+              </a>
+              <a href="#" class="nav_link">
+                <i class="bx bx-message-square-detail nav_icon"></i>
+                <span class="nav_name">Contacto</span>
               </a>
               <a href="#" class="nav_link">
                 <i class="bx bx-bar-chart-alt-2 nav_icon"></i>
-                <span class="nav_name">Stats</span>
+                <span class="nav_name">Dashboard</span>
               </a>
             </div>
           </div>
