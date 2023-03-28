@@ -32,7 +32,7 @@ namespace kindergarten.Services
       var client = new SendGridClient(apiKey);
       var msg = new SendGridMessage()
       {
-        From = new EmailAddress("pato_test@hotmail.com", "Repositorio digital"),
+        From = new EmailAddress("pato_test@hotmail.com", "Kindergarten"),
         Subject = subject,
         PlainTextContent = message,
         HtmlContent = message

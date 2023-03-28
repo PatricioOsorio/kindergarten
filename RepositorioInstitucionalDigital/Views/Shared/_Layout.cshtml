@@ -18,7 +18,7 @@
 
   <!-- My styles -->
   <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-  <link rel="stylesheet" href="~/RepositorioInstitucionalDigital.styles.css" asp-append-version="true" />
+  @*<link rel="stylesheet" href="~/RepositorioInstitucionalDigital.styles.css" asp-append-version="true" />*@
 
   <!-- Boxicons Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
@@ -29,6 +29,18 @@
 
   <!-- Aos (animation library) -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <!-- Sweetalert2 script -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+
+  <!-- Sweetalert2 css -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
+
+  <!-- Datatables -->
+
+  <link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.css" rel="stylesheet" />
+
+
 
   <!-- Page icon -->
   <link rel="icon" href="~/images/icon.png" />
@@ -111,34 +123,44 @@
         <nav class="nav">
           <div>
             <a class="nav_logo" asp-controller="Home" asp-action="Index">
-              <i class="bx bx-layer nav_logo-icon"></i>
-              <span class="nav_logo-name">OpenUtp</span>
+              <i class="fas fa-school nav_logo-icon"></i>
+              <span class="nav_logo-name">Kindergarten</span>
             </a>
             <div class="nav_list">
-              <a class="nav_link active" asp-controller="Home" asp-action="Index">
+              <a class="nav_link" asp-controller="Home" asp-action="Index">
                 <i class='bx bx-home-alt-2 nav_icon'></i>
                 <span class="nav_name">Inicio</span>
               </a>
-              <a class="nav_link" asp-controller="Superadmin" asp-action="Index">
-                <i class="bx bx-user nav_icon"></i>
-                <span class="nav_name">Usuarios</span>
+
+              @if (User.IsInRole("SUPERADMIN"))
+              {
+                <a class="nav_link" asp-controller="Superadmin" asp-action="Index">
+                  <i class="bx bx-user nav_icon"></i>
+                  <span class="nav_name">Usuarios</span>
+                </a>
+                <a class="nav_link" asp-controller="Superadmin" asp-action="ReadRoles">
+                  <i class="far fa-address-book nav_icon"></i>
+                  <span class="nav_name">Roles</span>
+                </a>
+              }
+
+              <a class="nav_link" asp-controller="Teacher" asp-action="Index">
+                <i class="fas fa-graduation-cap nav_icon"></i>
+                <span class="nav_name">Alumnos</span>
               </a>
-              <a href="#" class="nav_link">
-                <i class="bx bx-folder nav_icon"></i>
-                <span class="nav_name">Publicaciones</span>
-              </a>
-              <a href="#" class="nav_link">
-                <i class="bx bx-user nav_icon"></i>
-                <span class="nav_name">Roles</span>
-              </a>
-              <a href="#" class="nav_link">
-                <i class="bx bx-message-square-detail nav_icon"></i>
-                <span class="nav_name">Contacto</span>
-              </a>
-              <a href="#" class="nav_link">
-                <i class="bx bx-bar-chart-alt-2 nav_icon"></i>
-                <span class="nav_name">Dashboard</span>
-              </a>
+
+              @*<a href="#" class="nav_link">
+            <i class="bx bx-folder nav_icon"></i>
+            <span class="nav_name">Publicaciones</span>
+            </a>
+            <a href="#" class="nav_link">
+            <i class="bx bx-message-square-detail nav_icon"></i>
+            <span class="nav_name">Contacto</span>
+            </a>
+            <a href="#" class="nav_link">
+            <i class="bx bx-bar-chart-alt-2 nav_icon"></i>
+            <span class="nav_name">Dashboard</span>
+            </a>*@
             </div>
           </div>
           @*          <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
@@ -178,6 +200,10 @@
 
   <!-- My scripts js -->
   <script src="~/js/site.js" asp-append-version="true"></script>
+
+  <script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.js"></script>
+
+  <script src="~/js/datatables.js" asp-append-version="true"></script>
 
   @await RenderSectionAsync("Scripts", required: false)
 </body>

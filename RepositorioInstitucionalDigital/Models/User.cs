@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace kindergaten.Models
+namespace kindergarten.Models
 {
-  public class User : IdentityUser
-  {
-  }
+    public class User : IdentityUser
+    {
+    }
 }

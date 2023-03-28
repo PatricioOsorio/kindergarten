@@ -28,6 +28,7 @@ namespace kindergarten.Areas.Identity.Pages.Account
         private readonly IUserStore<IdentityUser> _userStore;
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
@@ -35,6 +36,7 @@ namespace kindergarten.Areas.Identity.Pages.Account
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
+            RoleManager<IdentityRole> roleManager,
             IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -42,6 +44,7 @@ namespace kindergarten.Areas.Identity.Pages.Account
             _emailStore = GetEmailStore();
             _signInManager = signInManager;
             _logger = logger;
+            _roleManager = roleManager;
             _emailSender = emailSender;
         }
 
@@ -120,6 +123,13 @@ namespace kindergarten.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                  var defaultrole = _roleManager.FindByNameAsync("Teacher").Result;
+
+                  if (defaultrole != null)
+                  {
+                    IdentityResult roleresult = await _userManager.AddToRoleAsync(user, defaultrole.Name);
+                  }
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
